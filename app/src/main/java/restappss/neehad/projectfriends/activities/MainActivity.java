@@ -10,7 +10,7 @@ import butterknife.ButterKnife;
 import restappss.neehad.projectfriends.R;
 import views.MainActivityViewPagerAdapter;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     @BindView(R.id.activity_main_viewPager)
     ViewPager mainViewPager;

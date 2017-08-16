@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import restappss.neehad.projectfriends.R;
 
-public class DetailsFragment extends Fragment {
+public class DetailsFragment extends BaseFragment {
 
     //return the fragment
     public static DetailsFragment newInstance(){

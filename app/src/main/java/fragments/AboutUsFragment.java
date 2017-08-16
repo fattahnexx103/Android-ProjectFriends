@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import restappss.neehad.projectfriends.R;
 
-public class AboutUsFragment extends Fragment {
+public class AboutUsFragment extends BaseFragment {
 
     public static AboutUsFragment newInstance(){
         return new AboutUsFragment();

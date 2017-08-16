@@ -8,4 +8,14 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+    <style name="CustomDialogActivity" parent="Base.Theme.AppCompat.Dialog" >
+        <item name="android:windowBackground">@color/colorTransparent</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:textColor">#fff</item>
+
+
+
+    </style>
 </resources>

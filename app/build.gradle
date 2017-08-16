@@ -18,6 +18,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    productFlavors{
+        inmemory{
+            applicationId "restappss.neehad.projectfriends.inmemory"
+        }
+
+        live{
+            applicationId "restappss.neehad.projectfriends.live"
+        }
+    }
 }
 
 dependencies {

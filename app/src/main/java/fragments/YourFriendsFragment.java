@@ -1,6 +1,7 @@
 package fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,13 +13,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.squareup.otto.Subscribe;
+
 import java.util.ArrayList;
 
 import entities.Friend;
 import restappss.neehad.projectfriends.R;
+import restappss.neehad.projectfriends.activities.BaseActivity;
+import restappss.neehad.projectfriends.activities.FriendPagerActivity;
+import restappss.neehad.projectfriends.activities.PracticeActivity;
+import services.FriendService;
 import views.YourFriendsViews.YourFriendsAdapter;
 
-public class YourFriendsFragment extends Fragment implements  YourFriendsAdapter.OnFriendClickedListener {
+public class YourFriendsFragment extends BaseFragment implements  YourFriendsAdapter.OnFriendClickedListener {
 
     //for logging purposes
     private final String LOG_TAG = YourFriendsFragment.class.getSimpleName();
@@ -36,13 +43,13 @@ public class YourFriendsFragment extends Fragment implements  YourFriendsAdapter
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_your_friends,container,false);
 
-        friendsAdapter = new YourFriendsAdapter(this,(AppCompatActivity) getActivity());
+        friendsAdapter = new YourFriendsAdapter(this,(BaseActivity) getActivity());
         friendsList = friendsAdapter.getFriendsList();
 
         recyclerView = (RecyclerView) rootView.findViewById(R.id.fragment_yout_friends_recyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 4));
         setUpAdapter();
-        getFriendsList(friendsList);
+        bus.post(new FriendService.SearchFriendRequest("Hello"));
         return rootView;
     }
 
@@ -54,20 +61,16 @@ public class YourFriendsFragment extends Fragment implements  YourFriendsAdapter
 
     @Override
     public void OnFriendClicked(Friend friend) {
-        Log.i(LOG_TAG, friend.getFriendName() + "was clicked");
+        //Log.i(LOG_TAG, friend.getFriendName() + "was clicked");
+        Intent intent = FriendPagerActivity.newIntent(getActivity(),friend);
+        startActivity(intent);
+
     }
 
-    private ArrayList<Friend> getFriendsList(ArrayList<Friend> friendsList){
-        for(int i = 0; i < 32; i++){
-            friendsList.add(new Friend(
-                    i,
-                    "Friend  " + i,
-                    "has this sample description",
-                    "http://www.gravatar.com/avatar/" + i + "?d=identicon",
-                    "Squad!"
-
-            ));
-        }
-        return friendsList;
+    @Subscribe
+    public void getFriends(FriendService.SearchFriendResponse response){
+        friendsList.clear();
+        friendsList.addAll(response.friendList);
     }
+
 }

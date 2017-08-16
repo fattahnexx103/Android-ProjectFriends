@@ -11,16 +11,17 @@ import java.util.ArrayList;
 import entities.Friend;
 import fragments.YourFriendsFragment;
 import restappss.neehad.projectfriends.R;
+import restappss.neehad.projectfriends.activities.BaseActivity;
 
 
 public class YourFriendsAdapter  extends RecyclerView.Adapter<YourFriendsViewHolder> implements View.OnClickListener {
 
     private LayoutInflater layoutInflater;
-    private AppCompatActivity activity;
+    private BaseActivity activity;
     private OnFriendClickedListener listener;
     private ArrayList<Friend> friendsList;
 
-    public YourFriendsAdapter(YourFriendsFragment listener, AppCompatActivity activity) {
+    public YourFriendsAdapter(YourFriendsFragment listener, BaseActivity activity) {
         this.listener = listener;
         this.activity = activity;
         layoutInflater = activity.getLayoutInflater();
