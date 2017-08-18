@@ -7,5 +7,6 @@ public class Module {
 
     public static void Register(Appl application){
         new InMemoryFriendService(application);
+        new InMemoryCardsService(application);
     }
 }
