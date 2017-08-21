@@ -1,6 +1,7 @@
 package fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 import entities.EventCard;
 import restappss.neehad.projectfriends.R;
 import restappss.neehad.projectfriends.activities.BaseActivity;
+import restappss.neehad.projectfriends.activities.PhotoPagerActivity;
 import services.EventCardService;
 import views.AboutViews.AboutUsAdapter;
 
@@ -58,7 +60,8 @@ public class AboutUsFragment extends BaseFragment implements AboutUsAdapter.Abou
     @Override
     public void OnEventCardClicked(EventCard eventCard) {
         if(!eventCard.isVideo()){
-            Log.i(AboutUsFragment.class.getSimpleName(),eventCard.getEventName() + " is a slide show");
+            Intent intent = PhotoPagerActivity.newIntent(getActivity(), eventCard);
+            startActivity(intent);
         }else{
             Log.i(AboutUsFragment.class.getSimpleName(),eventCard.getEventName() + "is a video");
         }

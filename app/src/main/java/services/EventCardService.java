@@ -7,7 +7,11 @@ import entities.EventCard;
 
 public class EventCardService {
 
-    public static class SearchEventsRequest{
+    private EventCardService(){
+
+    }
+
+   public static class SearchEventsRequest{
         public  String fireBaseUrl;
 
         public SearchEventsRequest(String fireBaseUrl) {
